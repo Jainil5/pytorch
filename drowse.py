@@ -12,23 +12,30 @@ model = torch.hub.load("ultralytics/yolov5",'yolov5s')
 
 IMAGES_PATH = os.path.join("data","images")
 labels = ["awake","drowsy"]
-number_images = 20
+number_images = 5
 
 cap = cv2.VideoCapture(0)
 
 for label in labels:
-    print("Collecting images")
+    print("Collecting images for {}".format(label))
     time.sleep(5)
     
     for img_num in range(number_images):
-        print("Collecting images for {} , image number{}",format(label, img_num))
+        print("Collecting images for {} , image number {}".format(label, img_num))
 
-    ret,frame = cap.read()
-    
-    imgname = os.path.join(IMAGES_PATH,label+'.'+str(uuid.uuid1()))
-    print(imgname)
+        ret,frame = cap.read()
+        
+        imgname = os.path.join(IMAGES_PATH,label+'.'+str(uuid.uuid1())+".jpg")
+        
+        cv2.imwrite(imgname,frame)
 
-    if cv2.waitKey(10) & 0xFF == ord("q"):
-        break
+        cv2.imshow("Image Collection",frame)
+        
+        time.sleep(2)
+
+        if cv2.waitKey(10) & 0xFF == ord("q"):
+            break
+
+        
 cap.release()
 cv2.destroyAllWindows()    
