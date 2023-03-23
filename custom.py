@@ -7,8 +7,8 @@ import os
 import time 
 
 
-model = torch.hub.load("ultralytics/yolov5",'yolov5s')
 
+model = torch.hub.load("ultralytics/yolov5",'yolov5s')
 
 IMAGES_PATH = os.path.join("data","images")
 labels = ["awake","drowsy"]
