@@ -1,5 +1,5 @@
 import torch
 
-t1 = torch.tensor([1.,2,3,4])
-print(t1.ndim)
+t1 = torch.tensor(9)
+print(t1.item())
 

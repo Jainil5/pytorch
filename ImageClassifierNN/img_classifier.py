@@ -9,7 +9,6 @@ from torchvision.transforms import ToTensor
 train = datasets.MNIST(root="data",download=True,train=True,transform=ToTensor())
 dataset = DataLoader(train,32)
 
-
 class ImageClassifier(nn.Module):
     def __init__(self):
         super().__init__()
@@ -65,4 +64,4 @@ if __name__ == "__main__":
     img = Image.open("img_3.jpg")
     img_tensor = ToTensor()(img).unsqueeze(0).to("cpu")
 
-    print(torch.argmax(clf(img_tensor)))
+    print(torch.argmax(clf(img_tensor)).item())
